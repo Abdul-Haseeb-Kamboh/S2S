@@ -12,11 +12,29 @@ import {TextInput, Button, Checkbox} from 'react-native-paper';
 import {useTogglePasswordVisibility} from '../core/useTogglePasswordVisibility';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../Component/AuthProvider';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SignUpScreen from './SignUpScreen';
+import LoginScreen from './SigninScreen';
 
-const SigninScreen = ({navigation}) => {
+const SigninScreen = ({props}) => {
+  console.log('Login page : ', props);
+
+  const Stack = createNativeStackNavigator();
+
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Signin"
+      component={LoginScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name="SignUp"
+      component={SignUpScreen}
+      options={{headerShown: false}}
+    />
+  </Stack.Navigator>;
 
   const {login} = useContext(AuthContext);
-  
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +68,7 @@ const SigninScreen = ({navigation}) => {
           <TextInput
             label="Email"
             // value={text}
-            onChangeText={(userEmail) => setEmail(userEmail)}
+            onChangeText={userEmail => setEmail(userEmail)}
             mode={'outlined'}
             selectionColor={'black'}
             activeOutlineColor={'#c729e3'}
@@ -72,7 +90,7 @@ const SigninScreen = ({navigation}) => {
             autoCorrect={false}
             secureTextEntry={passwordVisibility}
             enablesReturnKeyAutomatically
-            onChangeText={(userPassword) => setPassword(userPassword)}
+            onChangeText={userPassword => setPassword(userPassword)}
           />
           <Pressable
             onPress={handlePasswordVisibility}
@@ -105,9 +123,10 @@ const SigninScreen = ({navigation}) => {
             marginTop: 60,
           }}
           onPress={() => {
-            if( email == '' || password == '') alert("Please Enter Valid User and password")
-            else login(email,password)
-          } }>
+            if (email == '' || password == '')
+              alert('Please Enter Valid User and password');
+            else login(email, password);
+          }}>
           <ImageBackground
             style={styles.button}
             source={require('../images/buttonbg.png')}>
