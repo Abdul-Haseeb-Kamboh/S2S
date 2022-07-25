@@ -1,20 +1,25 @@
-import React, {useContext, useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {useNavigation, NavigationContainer} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import { AuthContext } from '../Component/AuthProvider';
+import {AuthContext} from '../Component/AuthProvider';
 
 import DrawerNavigationMain from './DrawerNavigationMain';
 import SigninScreen from '../screens/SigninScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppStack from './AppStack';
+
 // import AuthStack from './AuthStack';
 // import AppStack from './AppStack';
 
-const Routes = ({navigation}) => {
+const Routes = props => {
+  const Stack = createNativeStackNavigator();
   const {user, setUser} = useContext(AuthContext);
-  const [initializing, setInitializing] = useState(true);
 
-  const onAuthStateChanged = (user) => {
+  const [initializing, setInitializing] = useState(true);
+  const onAuthStateChanged = user => {
     setUser(user);
     if (initializing) setInitializing(false);
   };
@@ -26,12 +31,8 @@ const Routes = ({navigation}) => {
 
   if (initializing) return null;
 
-  return (
-    <NavigationContainer>
-      {user ? <DrawerNavigationMain /> : <SigninScreen navigation={navigation}/> }
-      {/* {console.log(user)} */}
-    </NavigationContainer>
-  );
+  // return user ? <DrawerNavigationMain /> : <SigninScreen />;
+  return user ? <DrawerNavigationMain /> : <AppStack />;
 };
 
 export default Routes;

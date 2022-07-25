@@ -1,4 +1,4 @@
-import React, {Component, useState , useContext} from 'react';
+import React, {Component, useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -6,47 +6,31 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import {TextInput, Button, Checkbox} from 'react-native-paper';
 import {useTogglePasswordVisibility} from '../core/useTogglePasswordVisibility';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../Component/AuthProvider';
+import {AuthContext} from '../Component/AuthProvider';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import LoginScreen from './SigninScreen';
+import ForgetPasswordScreen from './ForgetPasswordScreen';
+import {useNavigation} from '@react-navigation/native';
 
-const SigninScreen = ({props}) => {
-  console.log('Login page : ', props);
-
-  const Stack = createNativeStackNavigator();
-
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Signin"
-      component={LoginScreen}
-      options={{headerShown: false}}
-    />
-    <Stack.Screen
-      name="SignUp"
-      component={SignUpScreen}
-      options={{headerShown: false}}
-    />
-  </Stack.Navigator>;
-
+const SigninScreen = () => {
+  const navigation = useNavigation();
   const {login} = useContext(AuthContext);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [text, setText] = useState();
-
   const see = require('../images/eye_24px.png');
   const Blind = require('../images/blind_48px.png');
-
   const {passwordVisibility, rightIcon, handlePasswordVisibility} =
     useTogglePasswordVisibility();
 
+  const handleNavigation = () => {
+    navigation.navigate('ForgetPassword');
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -56,7 +40,6 @@ const SigninScreen = ({props}) => {
           <Text style={styles.TextStyle}>SIGN IN</Text>
         </ImageBackground>
       </View>
-
       <View
         style={{
           width: '100%',
@@ -77,7 +60,6 @@ const SigninScreen = ({props}) => {
             style={styles.inputField}
           />
         </View>
-
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
@@ -105,18 +87,17 @@ const SigninScreen = ({props}) => {
             {/* <Ionicons name={rightIcon} size={22} color="#232323" /> */}
           </Pressable>
         </View>
-
-        <Text
-          onPress={() => navigation.navigate('ForgetPassword')}
-          style={{
-            alignSelf: 'flex-end',
-            marginRight: 22,
-            marginTop: 8,
-            color: 'blue',
-          }}>
-          Forget password?
-        </Text>
-
+        <Pressable onPress={() => handleNavigation()}>
+          <Text
+            style={{
+              alignSelf: 'flex-end',
+              marginRight: 22,
+              marginTop: 8,
+              color: 'blue',
+            }}>
+            Forget Password?
+          </Text>
+        </Pressable>
         <TouchableOpacity
           style={{
             width: '90%',

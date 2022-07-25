@@ -1,4 +1,4 @@
-import React, {useState , useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -10,14 +10,14 @@ import {
   ScrollView,
 } from 'react-native';
 import {TextInput, Checkbox} from 'react-native-paper';
-import { AuthContext } from '../Component/AuthProvider';
-
+import {AuthContext} from '../Component/AuthProvider';
 
 const ForgetPasswordScreen = ({navigation}) => {
   const {resetPassword} = useContext(AuthContext);
   const [email, setEmail] = useState('');
 
   return (
+    // <Text>Password screen</Text>
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{backgroundColor: '#fff', height: 1000}}>
         <Image
@@ -42,7 +42,7 @@ const ForgetPasswordScreen = ({navigation}) => {
           <View style={styles.inputContainer}>
             <TextInput
               label="Email"
-              onChangeText={(userEmail) => setEmail(userEmail)}
+              onChangeText={userEmail => setEmail(userEmail)}
               mode={'outlined'}
               selectionColor={'black'}
               activeOutlineColor={'#c729e3'}
@@ -51,17 +51,17 @@ const ForgetPasswordScreen = ({navigation}) => {
               style={styles.inputField}
             />
           </View>
-          <View style={{marginTop:60, width:'80%', alignSelf:'center',}}>
-          <Button 
-          title='Submit'
-          color={'purple'}
-          onPress={() => {
-            if(email == '') alert("Please enter valid email address! ")
-            else{
-              resetPassword(email)
-            }
-          }}
-          />
+          <View style={{marginTop: 60, width: '80%', alignSelf: 'center'}}>
+            <Button
+              title="Submit"
+              color={'purple'}
+              onPress={() => {
+                if (email == '') alert('Please enter valid email address! ');
+                else {
+                  resetPassword(email);
+                }
+              }}
+            />
           </View>
         </View>
       </View>
