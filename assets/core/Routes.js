@@ -7,6 +7,7 @@ import { AuthContext } from '../Component/AuthProvider';
 import DrawerNavigationMain from './DrawerNavigationMain';
 import SigninScreen from '../screens/SigninScreen';
 import AppStack from './AppStack';
+import InitialStack from './InitialStack';
 // import AuthStack from './AuthStack';
 // import AppStack from './AppStack';
 
@@ -14,7 +15,7 @@ const Routes = ({navigation}) => {
   const {user, setUser} = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
 
-  const onAuthStateChanged = (user) => {
+  const onAuthStateChanged = user => {
     setUser(user);
     if (initializing) setInitializing(false);
   };
@@ -28,8 +29,7 @@ const Routes = ({navigation}) => {
 
   return (
     <NavigationContainer>
-      {user ? <DrawerNavigationMain /> : <SigninScreen navigation={navigation}/> }
-      {/* {console.log(user)} */}
+      {user ? <DrawerNavigationMain data={{user}} /> : <InitialStack />}
     </NavigationContainer>
   );
 };

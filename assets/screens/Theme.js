@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const RealTimeCommunication = () => {
+const Theme = () => {
   return (
     <View style={styles.container}>
-      <Text>Real Time Communication Screen Ok</Text>
+      <Text>Theme</Text>
     </View>
   );
 };
@@ -16,4 +16,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-export default RealTimeCommunication;
+
+export default Theme;

@@ -6,33 +6,16 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  TouchableOpacity
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {TextInput, Button, Checkbox} from 'react-native-paper';
 import {useTogglePasswordVisibility} from '../core/useTogglePasswordVisibility';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../Component/AuthProvider';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUpScreen from './SignUpScreen';
-import LoginScreen from './SigninScreen';
+import {AuthContext} from '../Component/AuthProvider';
 
-const SigninScreen = ({props}) => {
-  console.log('Login page : ', props);
 
-  const Stack = createNativeStackNavigator();
-
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Signin"
-      component={LoginScreen}
-      options={{headerShown: false}}
-    />
-    <Stack.Screen
-      name="SignUp"
-      component={SignUpScreen}
-      options={{headerShown: false}}
-    />
-  </Stack.Navigator>;
+const SigninScreen = ({navigation}) => {
+  // console.log('Login page : ', navigation);
 
   const {login} = useContext(AuthContext);
 
@@ -48,107 +31,110 @@ const SigninScreen = ({props}) => {
     useTogglePasswordVisibility();
 
   return (
-    <View style={styles.container}>
-      <View>
-        <ImageBackground
-          source={require('../images/bgTop.png')}
-          style={styles.imageStyle}>
-          <Text style={styles.TextStyle}>SIGN IN</Text>
-        </ImageBackground>
-      </View>
-
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 30,
-        }}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            label="Email"
-            // value={text}
-            onChangeText={userEmail => setEmail(userEmail)}
-            mode={'outlined'}
-            selectionColor={'black'}
-            activeOutlineColor={'#c729e3'}
-            outlineColor={'#1666f0'}
-            // style={{width: '90%', color: 'pink'}}
-            style={styles.inputField}
-          />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <View>
+          <ImageBackground
+            source={require('../images/bgTop.png')}
+            style={styles.imageStyle}>
+            <Text style={styles.TextStyle}>SIGN IN</Text>
+          </ImageBackground>
         </View>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.inputField}
-            label="Password"
-            mode={'outlined'}
-            selectionColor={'black'}
-            activeOutlineColor={'#c729e3'}
-            outlineColor={'#1666f0'}
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry={passwordVisibility}
-            enablesReturnKeyAutomatically
-            onChangeText={userPassword => setPassword(userPassword)}
-          />
-          <Pressable
-            onPress={handlePasswordVisibility}
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 30,
+          }}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              label="Email"
+              // value={text}
+              onChangeText={userEmail => setEmail(userEmail)}
+              mode={'outlined'}
+              selectionColor={'black'}
+              activeOutlineColor={'#c729e3'}
+              outlineColor={'#1666f0'}
+              // style={{width: '90%', color: 'pink'}}
+              style={styles.inputField}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.inputField}
+              label="Password"
+              mode={'outlined'}
+              selectionColor={'black'}
+              activeOutlineColor={'#c729e3'}
+              outlineColor={'#1666f0'}
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={passwordVisibility}
+              enablesReturnKeyAutomatically
+              onChangeText={userPassword => setPassword(userPassword)}
+            />
+            <Pressable
+              onPress={handlePasswordVisibility}
+              style={{
+                alignSelf: 'flex-end',
+                position: 'absolute',
+                right: 30,
+                top: 25,
+                zIndex: 1,
+              }}>
+              <Image source={see} />
+              {/* <Ionicons name={rightIcon} size={22} color="#232323" /> */}
+            </Pressable>
+          </View>
+
+          <Text
+            onPress={() => navigation.navigate('ForgetPassword')}
             style={{
               alignSelf: 'flex-end',
-              position: 'absolute',
-              right: 30,
-              top: 25,
-              zIndex: 1,
+              marginRight: 22,
+              marginTop: 8,
+              color: 'blue',
             }}>
-            <Image source={see} />
-            {/* <Ionicons name={rightIcon} size={22} color="#232323" /> */}
-          </Pressable>
+            Forget password?
+          </Text>
+
+          <TouchableOpacity
+            style={{
+              width: '90%',
+              marginTop: 60,
+            }}
+            onPress={() => {
+              if (email == '' || password == '')
+                alert('Please Enter Valid User and password');
+              else login(email, password);
+            }}>
+            <ImageBackground
+              style={styles.button}
+              source={require('../images/buttonbg.png')}>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  letterSpacing: 5,
+                }}>
+                SIGN IN
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <Text
+            style={{marginTop: 200}}
+            onPress={() => navigation.navigate('SignUp')}>
+            Don’t have an account?{' '}
+            <Text style={{color: '#DA0B55'}}>Sign Up</Text>
+          </Text>
+          <Text>Privacy Policy </Text>
         </View>
-
-        <Text
-          onPress={() => navigation.navigate('ForgetPassword')}
-          style={{
-            alignSelf: 'flex-end',
-            marginRight: 22,
-            marginTop: 8,
-            color: 'blue',
-          }}>
-          Forget password?
-        </Text>
-
-        <TouchableOpacity
-          style={{
-            width: '90%',
-            marginTop: 60,
-          }}
-          onPress={() => {
-            if (email == '' || password == '')
-              alert('Please Enter Valid User and password');
-            else login(email, password);
-          }}>
-          <ImageBackground
-            style={styles.button}
-            source={require('../images/buttonbg.png')}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 15,
-                fontWeight: 'bold',
-                letterSpacing: 5,
-              }}>
-              SIGN IN
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <Text
-          style={{marginTop: 200}}
-          onPress={() => navigation.navigate('SignUp')}>
-          Don’t have an account? <Text style={{color: '#DA0B55'}}>Sign Up</Text>
-        </Text>
-        <Text>Privacy Policy </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -50,7 +50,7 @@ const SignUpScreen = ({navigation}) => {
               selectionColor={'black'}
               activeOutlineColor={'#c729e3'}
               outlineColor={'#1666f0'}
-              onChangeText={(userEmail) => setEmail(userEmail)}
+              onChangeText={userEmail => setEmail(userEmail)}
               style={{width: '90%', color: 'pink', marginTop: 15}}
             />
 
@@ -58,7 +58,7 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styles.inputField}
                 label="Password"
-                onChangeText={(userPassword) => setPassword(userPassword)}
+                onChangeText={userPassword => setPassword(userPassword)}
                 mode={'outlined'}
                 selectionColor={'black'}
                 activeOutlineColor={'#c729e3'}
@@ -82,8 +82,6 @@ const SignUpScreen = ({navigation}) => {
               </Pressable>
             </View>
 
-           
-
             <TouchableOpacity
               style={{
                 width: '90%',
@@ -91,13 +89,13 @@ const SignUpScreen = ({navigation}) => {
               }}
               // onPress={() => alert('Working Login Button')}
               onPress={() => {
-                if( email == '' || password == '') alert("Please Enter Valid User and password")
-            else{
-              register(email, password)
-                // alert("Account Was Created")
-            }
-              }}
-              >
+                if (email == '' || password == '')
+                  alert('Please Enter Valid User and password');
+                else {
+                  register(email, password);
+                  // alert("Account Was Created")
+                }
+              }}>
               <ImageBackground
                 style={styles.button}
                 source={require('../images/buttonbg.png')}>
@@ -128,9 +126,9 @@ const SignUpScreen = ({navigation}) => {
                 justifyContent: 'space-between',
                 flex: 1,
               }}>
-              <Avatar.Icon size={70} icon="facebook" style={{margin:10}}/>
-              <Avatar.Icon size={70} icon="twitter" style={{margin:10}}/>
-              <Avatar.Icon size={70} icon="instagram" style={{margin:10}}/>
+              <Avatar.Icon size={70} icon="facebook" style={{margin: 10}} />
+              <Avatar.Icon size={70} icon="twitter" style={{margin: 10}} />
+              <Avatar.Icon size={70} icon="instagram" style={{margin: 10}} />
               {/* <Avatar.Icon size={50} icon="facebook" /> */}
             </View>
           </View>
