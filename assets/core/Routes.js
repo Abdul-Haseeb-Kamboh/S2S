@@ -10,11 +10,8 @@ import SignUpScreen from '../screens/SignUpScreen';
 import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppStack from './AppStack';
-<<<<<<< HEAD
 import InitialStack from './InitialStack';
-=======
 
->>>>>>> d3300137840867825ae3909a0387dfec67567d15
 // import AuthStack from './AuthStack';
 // import AppStack from './AppStack';
 
@@ -22,10 +19,7 @@ const Routes = props => {
   const Stack = createNativeStackNavigator();
   const {user, setUser} = useContext(AuthContext);
 
-<<<<<<< HEAD
-=======
   const [initializing, setInitializing] = useState(true);
->>>>>>> d3300137840867825ae3909a0387dfec67567d15
   const onAuthStateChanged = user => {
     setUser(user);
     if (initializing) setInitializing(false);
@@ -38,16 +32,7 @@ const Routes = props => {
 
   if (initializing) return null;
 
-<<<<<<< HEAD
-  return (
-    <NavigationContainer>
-      {user ? <DrawerNavigationMain data={{user}} /> : <InitialStack />}
-    </NavigationContainer>
-  );
-=======
-  // return user ? <DrawerNavigationMain /> : <SigninScreen />;
-  return user ? <DrawerNavigationMain /> : <AppStack />;
->>>>>>> d3300137840867825ae3909a0387dfec67567d15
+  return user ? <DrawerNavigationMain data={{user}} /> : <InitialStack />;
 };
 
 export default Routes;
