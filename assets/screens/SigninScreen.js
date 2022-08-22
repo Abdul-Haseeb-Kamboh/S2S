@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {TextInput, Button, Checkbox} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import {useTogglePasswordVisibility} from '../core/useTogglePasswordVisibility';
 import {AuthContext} from '../Component/AuthProvider';
 

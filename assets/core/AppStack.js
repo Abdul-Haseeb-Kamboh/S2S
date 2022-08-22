@@ -13,9 +13,15 @@ import Help from '../screens/Help';
 import About from '../screens/About';
 import Theme from '../screens/Theme';
 import Security from '../screens/Security';
-
+import Greeting from '../screens/Greeting';
+import Alphabets from '../screens/Alphabets';
+import Questions from '../screens/Questions';
+import Numbers from '../screens/Numbers';
+import SpeechToText from '../screens/SpeechToText';
 // import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import TextToSign from '../screens/TextToSign';
+import TextToSpeech from '../screens/TextToSpeech';
 
 const AppStack = ({navigation}) => {
   // console.log("AppStack navigation working :", navigation);
@@ -67,6 +73,13 @@ const AppStack = ({navigation}) => {
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="Theme" component={Theme} />
       <Stack.Screen name="Security" component={Security} />
+      <Stack.Screen name="Greeting" component={Greeting} />
+      <Stack.Screen name="Alphabets" component={Alphabets} />
+      <Stack.Screen name="Questions" component={Questions} />
+      <Stack.Screen name="Numbers" component={Numbers} />
+      <Stack.Screen name="SpeechToText" component={SpeechToText} />
+      <Stack.Screen name="TextToSign" component={TextToSign} />
+      <Stack.Screen name="TextToSpeech" component={TextToSpeech} />
     </Stack.Navigator>
     // </NavigationContainer>
   );

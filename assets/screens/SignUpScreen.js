@@ -85,7 +85,8 @@ const SignUpScreen = ({navigation}) => {
             <TouchableOpacity
               style={{
                 width: '90%',
-                marginTop: 60,
+                marginTop: 90,
+                height: 100,
               }}
               // onPress={() => alert('Working Login Button')}
               onPress={() => {
